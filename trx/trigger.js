@@ -100,7 +100,16 @@ async function balanceOf(contractAddress, toAddress, fromAddress, pk) {
 };
 
 
+async function createAuthen() {
+    let message = tronWeb.toHex(text='hello')
+    let signed = await tronWeb.trx.sign(message, 'B230BF77460370D821201969EDEC52FEE0E8615A155581D562D16A3974FCD8A7');
+    console.log(signed)
 
-transfer('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TEGdcXoFwdBN6gooV4wVcaaNDyyW2XTBVH', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', 50, '');
+    let verifyMsg = await tronWeb.trx.verifyMessage(message, signed, 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt');
+    console.log(verifyMsg)
+}
+
+createAuthen()
+// transfer('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TEGdcXoFwdBN6gooV4wVcaaNDyyW2XTBVH', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', 50, '');
 // transfer('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', 'TEGdcXoFwdBN6gooV4wVcaaNDyyW2XTBVH', 100, '');
 // balanceOf('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TEw9EGNgL91b4jBtgAeC11nswjazVnnfUb', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', '');
