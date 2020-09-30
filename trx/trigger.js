@@ -34,7 +34,7 @@ async function triggerSmartContract(contractAddress, functionSelector, options, 
             params,
             address
         );
-        // console.log(transaction.transaction);
+        console.log(transaction.transaction);
         return transaction.transaction;
 
         // return signAndBroadcastTransaction(transaction.transaction, pk);
@@ -79,11 +79,11 @@ async function transfer(contractAddress, fromAddress, toAddress, amount, pk) {
 };
 
 
-async function balanceOf(contractAddress, address, fromAddress, pk) {
+async function balanceOf(contractAddress, toAddress, fromAddress, pk) {
     try {
         let functionSelector = 'balanceOf(address)';
         let options = {};
-        let params = [{'type': 'address', 'value': address}];
+        let params = [{'type': 'address', 'value': toAddress}];
 
         const transaction = await tronWeb.transactionBuilder.triggerSmartContract(
             contractAddress,
@@ -101,5 +101,6 @@ async function balanceOf(contractAddress, address, fromAddress, pk) {
 
 
 
-// transfer('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', 'TEw9EGNgL91b4jBtgAeC11nswjazVnnfUb', 100, 'B230BF77460370D821201969EDEC52FEE0E8615A155581D562D16A3974FCD8A7');
-balanceOf('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TEw9EGNgL91b4jBtgAeC11nswjazVnnfUb', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', 'B230BF77460370D821201969EDEC52FEE0E8615A155581D562D16A3974FCD8A7');
+transfer('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TEGdcXoFwdBN6gooV4wVcaaNDyyW2XTBVH', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', 50, '');
+// transfer('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', 'TEGdcXoFwdBN6gooV4wVcaaNDyyW2XTBVH', 100, '');
+// balanceOf('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TEw9EGNgL91b4jBtgAeC11nswjazVnnfUb', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', '');
