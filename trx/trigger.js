@@ -109,7 +109,19 @@ async function createAuthen() {
     console.log(verifyMsg)
 }
 
-createAuthen()
+async function createAddress() {
+    const bip39 = require('bip39');
+    const ethers = require('ethers');
+    const mnemonic = bip39.generateMnemonic()
+    let mnemonicWallet = ethers.Wallet.fromMnemonic(mnemonic);
+    let privateKey = mnemonicWallet.privateKey.slice(2, mnemonicWallet.privateKey.length);
+    let publicKey = tronWeb.address.fromPrivateKey(privateKey);
+
+    console.log(publicKey);
+    console.log(privateKey);
+}
+
+createAddress()
 // transfer('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TEGdcXoFwdBN6gooV4wVcaaNDyyW2XTBVH', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', 50, '');
 // transfer('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', 'TEGdcXoFwdBN6gooV4wVcaaNDyyW2XTBVH', 100, '');
 // balanceOf('TSS9aeFpQJSPGUWQTWjiCzT5pjn3denf8D', 'TEw9EGNgL91b4jBtgAeC11nswjazVnnfUb', 'TPRTB2sNG79uA6nTrHMSceTSgncjSVMnQt', '');
